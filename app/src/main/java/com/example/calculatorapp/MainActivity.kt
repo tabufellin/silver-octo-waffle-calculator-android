@@ -44,6 +44,9 @@ class MainActivity : ComponentActivity() {
             findViewById<Button>(R.id.buttonEquals),
             findViewById<Button>(R.id.buttonBackspace),
 
+            //new buttons
+            findViewById<Button>(R.id.buttonMod),
+            findViewById<Button>(R.id.buttonPower)
 
             )
 
@@ -53,9 +56,7 @@ class MainActivity : ComponentActivity() {
 
     }
 
-
-
-
+    
     private fun onButtonClick(view: View) {
         val buttonText = (view as Button).text.toString()
         println("buttonText")
@@ -119,28 +120,27 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun performOperation() {
-
-
-        when (operation) {
-
-            '+' -> replaceResultText((operand1 + operand2).toString())
-            '-' -> replaceResultText((operand1 - operand2).toString())
-            '*' -> replaceResultText((operand1 * operand2).toString())
-            '/' -> {
-                if (operand2 != 0.0) {
-                    replaceResultText((operand1 / operand2).toString())
-                } else {
-                    replaceResultText("Cannot divide by zero")
-                }
+    when (operation) {
+        '+' -> replaceResultText((operand1 + operand2).toString())
+        '-' -> replaceResultText((operand1 - operand2).toString())
+        '*' -> replaceResultText((operand1 * operand2).toString())
+        '/' -> {
+            if (operand2 != 0.0) {
+                replaceResultText((operand1 / operand2).toString())
+            } else {
+                replaceResultText("Cannot divide by zero")
             }
         }
-        println("22222222")
-
-        isOperand1Input = true
-        operand1 = resultText.text.toString().toDouble()
-        operand2 = 0.0
-        operation = ' '
+        '%' -> replaceResultText((operand1 % operand2).toString())  // Módulo
+        '^' -> replaceResultText(Math.pow(operand1, operand2).toString())  // Potencia
     }
+    println("22222222")
+
+    isOperand1Input = true
+    operand1 = resultText.text.toString().toDouble()
+    operand2 = 0.0
+    operation = ' '
+}
 
 
 }
