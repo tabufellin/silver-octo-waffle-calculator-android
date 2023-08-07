@@ -42,8 +42,10 @@ class MainActivity : ComponentActivity() {
             findViewById<Button>(R.id.buttonDivide),
             findViewById<Button>(R.id.buttonClear),
             findViewById<Button>(R.id.buttonEquals),
+            findViewById<Button>(R.id.buttonBackspace),
 
-        )
+
+            )
 
         for (button in buttons) {
             button.setOnClickListener { onButtonClick(it) }
@@ -74,12 +76,29 @@ class MainActivity : ComponentActivity() {
             buttonText == "=" -> {
                 performOperation()
             }
+            buttonText == "←" -> {
+                println("identify button")
+                handleBackspace()
+            }
             else -> {
                 operation = buttonText[0]
                 isOperand1Input = false
                 operand1 = resultText.text.toString().toDouble()
                 resultText.text = ""
             }
+        }
+    }
+    private fun handleBackspace() {
+        if (isOperand1Input) {
+            println("if")
+            val currentText = resultText.text.toString()
+            if (currentText.isNotEmpty()) {
+                replaceResultText(currentText.substring(0, currentText.length - 1))
+            }
+        } else {
+            println("else")
+            operand2 = (operand2 / 10).toInt().toDouble()
+            updateResultText(operand2.toString())
         }
     }
 
@@ -100,14 +119,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun performOperation() {
-        println("se hara una operacion")
-        println(operand1)
-        println(operand2)
-        println(operand1 + operand2)
-        println(operand1 - operand2)
-        println(operand1 * operand2)
-        println(operand1 / operand2)
-        println("111111111")
+
 
         when (operation) {
 
@@ -125,16 +137,9 @@ class MainActivity : ComponentActivity() {
         println("22222222")
 
         isOperand1Input = true
-        println(resultText.text)
-        println(resultText.text.toString())
-        println(resultText.text.toString().toDouble())
-
-
-
         operand1 = resultText.text.toString().toDouble()
         operand2 = 0.0
         operation = ' '
-        println("llegue al final")
     }
 
 
