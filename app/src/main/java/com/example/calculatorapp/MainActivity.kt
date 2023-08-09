@@ -1,3 +1,8 @@
+//Wilson Alejandro Calderón Argueta. Carné: 22018
+//Giovanni Alejandro Santos Hernández. Carné: 22523
+//Diego Sebastián González Solís. Carné: 18588
+//Programación de Plataformas Móviles - Sección 11
+//Laboratorio 2: Calculadora
 package com.example.calculatorapp
 import android.os.Bundle
 import android.view.View
